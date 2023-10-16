@@ -11,7 +11,7 @@ from pycaret.classification import load_model, predict_model
 def convert_df(df):
     return df.to_csv(index=False).encode('utf-8')
 
-# Fun��o para converter o df para excel
+# Função para converter o df para excel
 @st.cache
 def to_excel(df):
     output = BytesIO()
@@ -22,23 +22,23 @@ def to_excel(df):
     return processed_data
 
 
-# Fun��o principal da aplica��o
+# Função principal da aplicação
 def main():
-    # Configura��o inicial da p�gina da aplica��o
+    # Configuração inicial da página da aplicação
     st.set_page_config(page_title = 'PyCaret', \
         layout="wide",
         initial_sidebar_state='expanded'
     )
 
-    # T�tulo principal da aplica��o
+    # Título principal da aplicação
     st.write("""## Escorando o modelo gerado no pycaret """)
     st.markdown("---")
     
-    # Bot�o para carregar arquivo na aplica��o
+    # Botão para carregar arquivo na aplicação
     st.sidebar.write("## Suba o arquivo")
     data_file_1 = st.sidebar.file_uploader("Bank Credit Dataset", type = ['csv','ftr'])
 
-    # Verifica se h� conte�do carregado na aplica��o
+    # Verifica se há conteúdo carregado na aplicação
     if (data_file_1 is not None):
         df_credit = pd.read_feather(data_file_1)
         df_credit = df_credit.sample(50000)
@@ -47,7 +47,7 @@ def main():
         predict = predict_model(model_saved, data=df_credit)
 
         df_xlsx = to_excel(predict)
-        st.download_button(label='=� Download',
+        st.download_button(label='📥 Download',
                             data=df_xlsx ,
                             file_name= 'predict.xlsx')
 
