@@ -7,12 +7,12 @@ from io                     import BytesIO
 from pycaret.classification import load_model, predict_model
 
 
-@st.cache_resource
+@st.cache
 def convert_df(df):
     return df.to_csv(index=False).encode('utf-8')
 
 # Fun��o para converter o df para excel
-@st.cache_resource
+@st.cache
 def to_excel(df):
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
@@ -55,3 +55,12 @@ def main():
 if __name__ == '__main__':
 	main()
     
+
+
+
+
+
+
+
+
+
