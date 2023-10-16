@@ -7,12 +7,12 @@ from io                     import BytesIO
 from pycaret.classification import load_model, predict_model
 
 
-@st.cache
+@st.cache_resource
 def convert_df(df):
     return df.to_csv(index=False).encode('utf-8')
 
-# Função para converter o df para excel
-@st.cache
+# Funï¿½ï¿½o para converter o df para excel
+@st.cache_resource
 def to_excel(df):
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
@@ -22,23 +22,23 @@ def to_excel(df):
     return processed_data
 
 
-# Função principal da aplicação
+# Funï¿½ï¿½o principal da aplicaï¿½ï¿½o
 def main():
-    # Configuração inicial da página da aplicação
+    # Configuraï¿½ï¿½o inicial da pï¿½gina da aplicaï¿½ï¿½o
     st.set_page_config(page_title = 'PyCaret', \
         layout="wide",
         initial_sidebar_state='expanded'
     )
 
-    # Título principal da aplicação
+    # Tï¿½tulo principal da aplicaï¿½ï¿½o
     st.write("""## Escorando o modelo gerado no pycaret """)
     st.markdown("---")
     
-    # Botão para carregar arquivo na aplicação
+    # Botï¿½o para carregar arquivo na aplicaï¿½ï¿½o
     st.sidebar.write("## Suba o arquivo")
     data_file_1 = st.sidebar.file_uploader("Bank Credit Dataset", type = ['csv','ftr'])
 
-    # Verifica se há conteúdo carregado na aplicação
+    # Verifica se hï¿½ conteï¿½do carregado na aplicaï¿½ï¿½o
     if (data_file_1 is not None):
         df_credit = pd.read_feather(data_file_1)
         df_credit = df_credit.sample(50000)
@@ -47,7 +47,7 @@ def main():
         predict = predict_model(model_saved, data=df_credit)
 
         df_xlsx = to_excel(predict)
-        st.download_button(label='=å Download',
+        st.download_button(label='=ï¿½ Download',
                             data=df_xlsx ,
                             file_name= 'predict.xlsx')
 
