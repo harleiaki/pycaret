@@ -36,7 +36,7 @@ def main():
     
     # Botão para carregar arquivo na aplicação
     st.sidebar.write("## Suba o arquivo")
-    data_file_1 = st.sidebar.file_uploader("Bank Credit Dataset", type = ['csv','ftr'])
+    data_file_1 = st.sidebar.file_uploader("Bank Credit Dataset", type = ['csv','ftr','pkl'])
 
     # Verifica se há conteúdo carregado na aplicação
     if (data_file_1 is not None):
