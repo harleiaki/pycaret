@@ -36,14 +36,14 @@ def main():
     
     # Botão para carregar arquivo na aplicação
     st.sidebar.write("## Suba o arquivo")
-    data_file_1 = st.sidebar.file_uploader("Bank Credit Dataset", type = ['csv','ftr','pkl'])
+    data_file_1 = st.sidebar.file_uploader("Bank Credit Dataset", type = ['csv','ftr'])
 
     # Verifica se há conteúdo carregado na aplicação
     if (data_file_1 is not None):
         df_credit = pd.read_feather(data_file_1)
         df_credit = df_credit.sample(50000)
 
-        model_saved = load_model('LR Model Aula 5 062022')
+        model_saved = load_model('C:\Users\harle\Downloads\Mod38/model_final')
         predict = predict_model(model_saved, data=df_credit)
 
         df_xlsx = to_excel(predict)
@@ -54,3 +54,12 @@ def main():
 
 if __name__ == '__main__':
 	main()
+    
+
+
+
+
+
+
+
+
